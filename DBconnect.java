@@ -9,6 +9,8 @@ import java.sql.SQLException;
 public class DBconnect {
 	
 	
+	public static Object con;
+
 	public static void main(String[] args){
 		
 		try{
