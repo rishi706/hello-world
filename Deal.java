@@ -7,13 +7,14 @@ import java.sql.SQLException;
 
 public class Deal {
 	
-	public void displayDeal() { 
+	public String[] displayDeal() throws SQLException { 
 		int size = 0;
 		int count = 0;
 		PreparedStatement st;
-		ResultSet r1;
+		ResultSet r1 = null;
+		
 		try {
-			st = ((Connection) DBconnect.con).prepareStatement("select * from deal ");
+			st = ((Connection) DBconnect.con).prepareStatement("show tables ");
 		
 			r1=st.executeQuery();
 		} 
@@ -21,6 +22,24 @@ public class Deal {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			while (r1.next()) {
+
+			      size++;
+			  }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 String[] str=new String[size];
+		 while (r1.next()) {
+
+
+	          str[count]=  r1.getString("Tables_in_db_grad_cs_1917");
+	          count++;
+	      }
+		 
+		return str ;
 	}
 
 }
